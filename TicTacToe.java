@@ -11,10 +11,10 @@ public class TicTacToe{
 		
 		while(true){
 			char[][] gameBoard = {{' ','|',' ','|',' '},
-					{'-','+','-','+','-'},
-					{' ','|',' ','|',' '},
-					{'-','+','-','+','-'},
-					{' ','|',' ','|',' '}
+								{'-','+','-','+','-'},
+								{' ','|',' ','|',' '},
+								{'-','+','-','+','-'},
+								{' ','|',' ','|',' '}
 			};				
 
 			while(true){
@@ -119,9 +119,8 @@ public class TicTacToe{
 	public static void printGameBoard(char[][] gameBoard){
 
 		for(char[] row : gameBoard){
-			for(char c : row){
+			for(char c : row)
 				System.out.print(c);
-			}
 			System.out.println();
 		}
 	}
@@ -148,34 +147,44 @@ public class TicTacToe{
 		winningList.add(crossTwo);
 
 		for(List list : winningList){
-			if(playerPositions.containsAll(list)){
+			if(playerPositions.containsAll(list))
 				return "User win";
-			}else if(computerPositions.containsAll(list)){
+			else if(computerPositions.containsAll(list))
 				return "Computer wins";
-			}else if(playerPositions.size() + computerPositions.size() == 10){
+			else if(playerPositions.size() + computerPositions.size() == 10)
 				return "The Game is a Draw";
-			}
 		}
 		return "";
 	}
 
 	public static String inputPosition(){
 
-		Scanner sc = new Scanner(System.in);			
+		Scanner scan = new Scanner(System.in);			
 		System.out.print("tictactoe>");
-		String input = sc.nextLine();				
+		String input = scan.nextLine();				
 
-		if(input.equals("move 0,0")){return "1";}
-		else if(input.equals("move 0,2")){return "2";}
-		else if(input.equals("move 0,4")){return "3";}
-		else if(input.equals("move 2,0")){return "4";}
-		else if(input.equals("move 2,2")){return "5";}
-		else if(input.equals("move 2,4")){return "6";}
-		else if(input.equals("move 4,0")){return "7";}
-		else if(input.equals("move 4,2")){return "8";}
-		else if(input.equals("move 4,4")){return "9";}
-		else if(input.equals("scoreboard")){return "10";}
-		else if(input.equals("quite")){return "11";}
+		if(input.equals("move 0,0"))
+			return "1";
+		else if(input.equals("move 0,2"))
+			return "2";
+		else if(input.equals("move 0,4"))
+			return "3";
+		else if(input.equals("move 2,0"))
+			return "4";
+		else if(input.equals("move 2,2"))
+			return "5";
+		else if(input.equals("move 2,4"))
+			return "6";
+		else if(input.equals("move 4,0"))
+			return "7";
+		else if(input.equals("move 4,2"))
+			return "8";
+		else if(input.equals("move 4,4"))
+			return "9";
+		else if(input.equals("scoreboard"))
+			return "10";
+		else if(input.equals("quite"))
+			return "11";
 		return "0";		
 	}
 
