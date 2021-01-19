@@ -3,6 +3,7 @@
 import java.util.*;
 public class TicTacToe{
 
+	static int u=0, c=0;
 	static ArrayList<Integer> playerPositions = new ArrayList<Integer>();
 	static ArrayList<Integer> computerPositions = new ArrayList<Integer>();	
 
@@ -19,9 +20,12 @@ public class TicTacToe{
 			while(true){
 				int playerPos = Integer.parseInt(inputPosition());			
 				
-				if(playerPos == 0){System.out.println("Invalid input");}
-				else if(playerPos == 11){System.exit(0);}
-			else if(playerPos == 10){/*printScoreBoard*/}
+				if(playerPos == 0)
+					System.out.println("Invalid input");
+				else if(playerPos == 11)
+					System.exit(0);
+				else if(playerPos == 10)
+					printScoreBoard();
 				else{
 					while(playerPositions.contains(playerPos) || computerPositions.contains(playerPos)){
 						System.out.println("Invalid move, place already taken");
@@ -33,7 +37,13 @@ public class TicTacToe{
 					String result = checkWinner();
 					if(result.length()>0){
 						printGameBoard(gameBoard);
-						System.out.println(result);		
+						if(result.equals("User win"))
+							u++;
+						else if(result.equals("Computer wins"))
+							c++;
+						System.out.println(result);
+						playerPositions.clear();
+						computerPositions.clear();
 						break;
 					}
 
@@ -45,14 +55,20 @@ public class TicTacToe{
 
 					placePiece(gameBoard, computerPos, "computer");
 
-					printGameBoard(gameBoard);
-
 					result = checkWinner();
 					if(result.length()>0){
 						printGameBoard(gameBoard);
+						if(result.equals("User win"))
+							u++;
+						else if(result.equals("Computer wins"))
+							c++;
 						System.out.println(result);
+						playerPositions.clear();
+						computerPositions.clear();
 						break;
-					}				
+					}
+					
+					printGameBoard(gameBoard);
 				}			
 			}
 		}
@@ -136,7 +152,7 @@ public class TicTacToe{
 				return "User win";
 			}else if(computerPositions.containsAll(list)){
 				return "Computer wins";
-			}else if(playerPositions.size() + computerPositions.size() == 9){
+			}else if(playerPositions.size() + computerPositions.size() == 10){
 				return "The Game is a Draw";
 			}
 		}
@@ -161,5 +177,11 @@ public class TicTacToe{
 		else if(input.equals("scoreboard")){return "10";}
 		else if(input.equals("quite")){return "11";}
 		return "0";		
+	}
+
+	public static void printScoreBoard(){
+
+		System.out.println("| Computer win | User win |" );
+		System.out.println("| "+ c + "            | "+ u+"        |");
 	}
 }
