@@ -2,6 +2,10 @@
 //A command Line Game to Play a game of TicTacToe with computer
 import java.util.*;
 public class TicTacToe{
+
+	static ArrayList<Integer> playerPositions = new ArrayList<Integer>();
+	static ArrayList<Integer> computerPositions = new ArrayList<Integer>();	
+
 	public static void main(String ar[]){
 		char[][] gameBoard = {{' ','|',' ','|',' '},
 				{'-','+','-','+','-'},
@@ -19,10 +23,14 @@ public class TicTacToe{
 		}else if(playerPos == 10){
 			//print scoreboard
 		}else{
-			System.out.println(playerPos);
-		}
+			placePiece(gameBoard, playerPos, "player");
 
-		printGameBoard(gameBoard);
+			Random rn = new Random();
+			int computerPos = rn.nextInt(9) + 1;
+			placePiece(gameBoard, computerPos, "computer");
+
+			printGameBoard(gameBoard);
+		}
 	}
 
 	public static void printGameBoard(char[][] gameBoard){
@@ -51,6 +59,48 @@ public class TicTacToe{
 		else if(input.equals("scoreboard")){return "10";}
 		else if(input.equals("quite")){return "11";}
 		return "0";		
+	}
+
+	public static void placePiece(char[][] gameBoard, int pos, String user){		
+
+		char symbol = ' ';
+		if(user.equals("player")){ 
+			symbol = 'X';
+			playerPositions.add(pos);	
+		}else if(user.equals("computer")){
+			symbol = 'O';
+			computerPositions.add(pos);		
+		}
+
+		switch(pos){
+			case 1:
+				gameBoard[0][0] = symbol;
+				break;
+			case 2:
+				gameBoard[0][2] = symbol;
+				break;
+			case 3:
+				gameBoard[0][4] = symbol;
+				break;
+			case 4:
+				gameBoard[2][0] = symbol;
+				break;
+			case 5:
+				gameBoard[2][2] = symbol;
+				break;
+			case 6:
+				gameBoard[2][4] = symbol;
+				break;
+			case 7:
+				gameBoard[4][0] = symbol;
+				break;
+			case 8:
+				gameBoard[4][2] = symbol;
+				break;
+			case 9:
+				gameBoard[4][4] = symbol;
+				break;
+		}
 	}
 
 }
